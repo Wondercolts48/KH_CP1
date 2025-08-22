@@ -3,7 +3,7 @@
 students_count = 29
 amount_water = "1oz"
 name = "Jake"
-#grade = 98
+grade = 98
 print(grade)
 
 grade = 88
