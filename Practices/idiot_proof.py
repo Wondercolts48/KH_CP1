@@ -1,8 +1,9 @@
 # KH 2nd idiot proof practice
 
-first = ("Give your me first name".title()) 
-last =("Give me your last name")
-phone = ("please give me your phone number")
-gpa =("Now give me your GPA")
+full_name = input("Give your me full name." " ").title().strip()
+phone = input("please give me your phone number." " ")
+#gpa =input("Now give me your GPA." " ")
 
-print
+print(
+
+print(f"Welcome" " " + full_name, + "Is your phone number?" + phone)
