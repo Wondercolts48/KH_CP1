@@ -11,5 +11,10 @@ while True:
         remove_item = input("What would you like to remove from your list?")
         shopping_list.remove(remove_item)
         print("You removed", remove_item, "from your list, this is your new list now", shopping_list)
+    elif action == "view":
+        print(shopping_list)
     elif action == "exit":
+        print("Goodbye")
         break
+    else: 
+        print("That's not an option from your list")
