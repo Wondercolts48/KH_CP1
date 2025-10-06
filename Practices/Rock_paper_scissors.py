@@ -2,23 +2,29 @@
 
 import random
 
-score = 0
-user_score = 0
 choices = ["rock", "paper", "scissors"]
 
-game = input("Welcome to Rock, Paper, Scissors! Would you like to play today? ")
-if game == "yes":
-    print("then let's start the game!")
+print("Welcome to Rock, Paper, Scissors!\nQuit: 'q'\nRock: 'r\nPaper: 'p")
     
 
-while game:
-    user = ("rock", "paper", "scissors")
-    input("Choose, rock, paper, or scissors")
+while True:
+    player_choice = input("Choose, rock, paper, or scissors:\n")
     computer = random.choice(choices)
 
-if user == computer:
-    print("HA, it's a tie!")
-    user_score += 0
-elif (user == "paper" and computer == "scissors"):
-    print("I win! ")
-    user_score += 1
+    if player_choie == "quit":
+        break
+                
+    elif player_choice == "rock"
+        if computer == "rock":
+            print("tie")
+        elif computer == "scissors":
+            print("Ha, You won me.")
+        elif computer == "paper":
+            print("Ha, I won you.")
+
+    elif player_choice == "paper"
+
+    elif player_choice == "scissors"
+
+    else:
+        print("Try again")
