@@ -11,10 +11,10 @@ while True:
     player_choice = input("Choose, rock, paper, or scissors:\n")
     computer = random.choice(choices)
 
-    if player_choie == "quit":
+    if player_choice == "quit":
         break
                 
-    elif player_choice == "rock"
+    elif player_choice == "rock":
         if computer == "rock":
             print("It's a tie!")
         elif computer == "scissors":
@@ -22,7 +22,7 @@ while True:
         elif computer == "paper":
             print("Ha, I won you.")
 
-    elif player_choice == "paper"
+    elif player_choice == "paper":
         if computer == "paper":
             print("It's a tie!")
         elif computer == "scissors":
@@ -30,7 +30,7 @@ while True:
         elif computer == "paper":
             print("Dang, you won.")
 
-    elif player_choice == "scissors"
+    elif player_choice == "scissors":
         if computer == "scissors":
             print("It's a tie!")
         elif computer == "paper":
