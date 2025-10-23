@@ -7,11 +7,16 @@ def encode():
     move = input("How many spaces do you want to shift? ")
     # Have all my variables in a place where I can see
     letter = ""
-    shift = int(shift)
+    move = int(move)
 
     for letter in message:
-        cypher = ord(letter) + shift
+        cypher = ord(letter) + move
         cypher = chr(cypher)
+
+        name += cypher
     #then it prints out the code after it's already cyphered
 
-    print(message)
+    
+    print(name)
+
+encode()
