@@ -1,6 +1,6 @@
 # KH 2nd Cesar cypher encoder and decoder
+
 # Make a function to cypher up the message
-def encode():
       def encode():
       # Ask what they want to do cypher
     message = input("Hi, please put in your code you want to cypher ")
@@ -31,3 +31,5 @@ def decode():        #Decodes the message back to the orignal
         result += message(shifted)
     else:
         result += message
+
+decode()
