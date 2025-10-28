@@ -56,11 +56,8 @@ if turn == "user":
       print("You hurt the monster, the monster now has", mon_hp2,"health left" ) 
       time.sleep(1)
 
-   elif playerinput == str(2):
-      mon_hp2 =
-
-elif turn == "monster":
-   print("The monster goes first")
+   elif turn == "monster":
+      print("The monster goes first")
    new_health = health - mon_att
    print("You took", mon_att,"damage, now you have", new_health,"health left")
-   time.sleep
+   time.sleep(1)
