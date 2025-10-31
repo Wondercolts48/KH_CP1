@@ -1,11 +1,13 @@
 # Kh 2nd Combat program
 
-
 import random
 
 def move():
    print(" ")
-   if turn == "user":
+   turn = random.choice(["user", "monster"])
+   while True:
+         turn = random.choice(["user", "monster"])
+         if turn == "user":
                print("You go first!")
                print("Choose an action: ")
                print("1. Attack")
@@ -13,14 +15,17 @@ def move():
                print("3. Heal")
                playerinput = input("")
 
-   if playerinput == str(1):
-                  mon_hp2 = mon_hp - damage
-                  print("You hurt the monster, the monster now has", mon_hp2,"health left" )
-   elif playerinput == str(3):
-                  heal = health + 5
-                  print("you healed yourself", heal)
+               if playerinput == str(1):
+                     mon_hp2 = mon_hp - damage
+                     print("You hurt the monster, the monster now has", mon_hp2,"health left" )
+               elif playerinput == str(2):
+                    health - 3
+                    print("You blocked the monster's attack! You took half it's damage. Now you have", new_health )
+               elif playerinput == str(3):
+                   heal = + 5
+                   print("you healed yourself", heal)
 
-   elif turn == "monster":
+         elif turn == "monster":
                   print("The monster goes first")
                   new_health = health - mon_att
                   print("You took", mon_att,"damage, now you have", new_health,"health left")
@@ -32,7 +37,7 @@ Class = input("Now choose your class of fighter, 1 is a fighter, 2 is a wizard, 
 print("Great, here are your stats!")
 
 mon_hp = 45
-mon_att = 5
+mon_att = 6
 mon_def = 13
 
 if Class == str(1):
@@ -61,6 +66,10 @@ elif Class == str(3):
     print("Your defense is", defense)
     damage = 10
     print("You do", damage,"damage")
-    turn = random.choice(["user", "monster"])
+
+if health < 0:
+       print("You are now dead")
+elif mon_hp < 0:
+       print("You killed the monster!")
 
 move()
