@@ -4,11 +4,23 @@
 import random
 import turtle
 
+grids_rows = [[1,1,0,0,1,0],
+             [0,1,1,1,0,1]]
 
-line_1 = turtle.Turtle()
+grids_columns = [[0,1,1,0,1],
+               0,0,0,1,1,1,]
 
-line_1.pendown()
-line_1.forward(350)
+
+for grid in grids_columns:
+   if grid == 0:
+      turtle.pendown()
+      turtle.forward(46)
+      
+   
+   elif grid == 1:
+      turtle.penup()
+      turtle.forward(50)
+
 
 
 
