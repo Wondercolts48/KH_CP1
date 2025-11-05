@@ -4,27 +4,50 @@
 import random
 import turtle
 
-grids_rows = [[1,1,0,0,1,0],
-             [0,1,1,1,0,1]]
+grids_rows = []
 
-grids_columns = [[0,1,1,0,1],
-               0,0,0,1,1,1,]
-
-
-for grid in grids_columns:
-   if grid == 0:
-      turtle.pendown()
-      turtle.forward(46)
-      
-   
-   elif grid == 1:
+grids_columns = []
+turtle.goto(-2,0)
+#making my borders so then I can make the maze
+for grid in range(20):
+   if grid == 0:        #Making the borders
+      turtle.forward(360)
       turtle.penup()
-      turtle.forward(50)
+      turtle.right(90)
 
 
+   if grid == 1:
+         turtle.penup()
+         turtle.forward(50)
+         turtle.pendown()
+         turtle.forward(200)
+
+   if grid == 2:
+      turtle.forward(60)
+      turtle.right(90)
 
 
+   if grid == 3:
+         turtle.forward(80)
+         turtle.pendown()
+         turtle.forward(220)
 
+   if grid == 4:
+      turtle.forward(60)
+      turtle.penup()
+      turtle.right(90)
+
+   if grid == 5:
+         turtle.penup()
+         turtle.forward(50)
+         turtle.pendown()
+         turtle.forward(260)
+
+
+#Using 
+def maze():
+
+        
 
 
 turtle.done()
