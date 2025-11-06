@@ -4,10 +4,11 @@
 import random
 import turtle
 
-grids_rows = []
+grid_rows = random.randrange(0,1)
 
-grids_columns = []
-turtle.goto(-2,0)
+grids_columns = random.randrange (0,1)
+
+turtle.goto(0,0)
 #making my borders so then I can make the maze
 for grid in range(20):
    if grid == 0:        #Making the borders
@@ -42,13 +43,33 @@ for grid in range(20):
          turtle.forward(50)
          turtle.pendown()
          turtle.forward(260)
+         turtle.penup()
+         turtle.goto(0,-260)
+         turtle.right(90)
+# Going to make my rows and columns
+def grid_rows():
+   val = random.randrange(0,1)
+   if val == 0:
+       turtle.pendown
+       turtle.color("black")
+       turtle.forward(30)
+   elif val == 1:
+       turtle.penup
 
 
-#Using 
-def maze():
 
-        
 
+def grids_columns():
+   if grids_columns == 0:
+      turtle.penup
+
+
+
+
+grid_rows()
+
+
+grids_columns()
 
 turtle.done()
 # Seeing if the maze is actaully solvable
