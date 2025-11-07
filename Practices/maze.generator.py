@@ -4,9 +4,23 @@
 import random
 import turtle
 
-grid_rows = random.randrange(0,1)
+grid_rows = [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+]
 
-grids_columns = random.randrange (0,1)
+grids_columns = [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+]
 
 turtle.goto(0,0)
 #making my borders so then I can make the maze
@@ -46,34 +60,25 @@ for grid in range(20):
          turtle.penup()
          turtle.goto(0,-260)
          turtle.right(90)
+
 # Going to make my rows and columns
-def grid_rows():
-   val = random.randrange(0,1)
-   if val == 0:
-       turtle.pendown
-       turtle.color("black")
-       turtle.forward(30)
-   elif val == 1:
-       turtle.penup
+def makerows(grid_rows):
+   for row in grid_rows:
+       for i in range(0,6):
+           row.append(random.randrange(0,2))
+           return(grid_rows)
 
 
 
 
 def grids_columns():
    if grids_columns == 0:
-      turtle.penup
+      turtle.pendown
 
 
-
-
-grid_rows()
-
-
-grids_columns()
-
-turtle.done()
 # Seeing if the maze is actaully solvable
 def is_solvable(row_grid, col_grid):
+    
 
     size = len(row_grid) - 1  #how wide the maze actaully is'
     visited = []   #Seeing where we have been already
@@ -102,3 +107,12 @@ def is_solvable(row_grid, col_grid):
        stack.append((x, y -1))
 
     return False
+
+
+
+
+makerows(grid_rows)
+
+grids_columns()
+
+turtle.done()
