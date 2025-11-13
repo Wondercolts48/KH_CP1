@@ -30,18 +30,16 @@ for x in menu.keys():
     for y in menu[x].keys():
         print(f"{y} price {menu[x][y]}")
         print("")
-
-user = input("What would you like to have for brealfast today? ")
 order_list = []
 # Getting the user to start ordering
+total = 0
 def order(order_list):
-    if user == "The grizz":
-        order_list.append(user)
-        print("Great choice! Now what do you want as your sides? Please choose two")
-
-    if user == "Corn bread muffin":
-        order_list.a
-
-
-#giving them their options on what they can order
+While True:
+choice = input("What would you like for breakfast today? ")
+if choice in menu:
+    order_list.append(choice)
+    total += menu[choice]
+    print(f"{choice.title()} was added
+else:
+    print("That wasn't a choice on the menu, please choose something from the menu.")
 #Telling them their receipt and what they owe
