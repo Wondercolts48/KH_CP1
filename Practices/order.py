@@ -24,8 +24,12 @@ menu = {
     }
 
     }
+
 # Making my menu look nice and presentable so it actually looks like a menu
-print(f"{y} price {menu[x][y]}")
+for x in menu.keys():
+    print(x)
+    for y in menu[x].keys():
+        print(f"{y} price {menu[x][y]}")
 print("")
 order_list = []
 total = 0
