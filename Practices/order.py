@@ -30,19 +30,34 @@ for x in menu.keys():
     print(x)
     for y in menu[x].keys():
         print(f"{y} price {menu[x][y]}")
-        print("")
+print("")
 order_list = []
 total = 0
 
 # Getting the user to start ordering
-total = 0
-def order(order_list):
-While True:
-choice = input("What would you like for breakfast today? ")
-if choice in menu:
-    order_list.append(choice)
-    total += menu[choice]
-    print(f"{choice.title()} was added
-else:
+while True:
+    choice = input("What would you like to order? (or type 'done' to finish): ")
+    if choice.lower() == 'done':
+        break
+
+found = False
+for category in menu:
+    if choice in menu[category]:
+        order_list.append(choice)
+    total += menu[category][choice]
+    print(f"{choice.title()} was added for ${menu[category][choice]:.2f}")
+    found = True
+    break
+
+if not found:
+    print("That wasn't on the menu. Please choose something from the menu.")
+
+# Telling them their receipt and what they owe
+print("\n" + "="*40)
+print("YOUR ORDER:")
+for item in order_list:
+    print(f"  - {item}")
+    print("="*40)
+    print(f"Total: ${total:.2f}")
+    print("Thank you for your order!")
     print("That wasn't a choice on the menu, please choose something from the menu.")
-#Telling them their receipt and what they owe
