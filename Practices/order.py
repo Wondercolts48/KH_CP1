@@ -5,7 +5,7 @@ menu = {
     "Breakfast": {    #Getting my breakfast order up
         "The grizz": 15.99,
         "Bruce's meat lover's omelette": 13.99,
-        "Mini volcano": 10.99,
+        "Mini Volcano": 10.99,
         "Happy cub cakes": 4.99
     },
     "Sides":{   #having all my sides
@@ -24,6 +24,7 @@ menu = {
     }
 
     }
+
 # Making my menu look nice and presentable so it actually looks like a menu
 for x in menu.keys():
     print(x)
@@ -31,19 +32,17 @@ for x in menu.keys():
         print(f"{y} price {menu[x][y]}")
         print("")
 order_list = []
+total = 0
+
 # Getting the user to start ordering
+total = 0
 def order(order_list):
-    while True:
-        total = 0
-        choice = input("What would you like for breakfast today? ")
-        if choice in menu["Breakfast"].keys():
-            order_list.append(choice)
-            total += menu[choice].values()
-            print(f"{[order_list]} was added")
-
-        else:
-            print("That wasn't a choice on the menu, please choose something from the menu.")
-
-
-order(order_list)
+While True:
+choice = input("What would you like for breakfast today? ")
+if choice in menu:
+    order_list.append(choice)
+    total += menu[choice]
+    print(f"{choice.title()} was added
+else:
+    print("That wasn't a choice on the menu, please choose something from the menu.")
 #Telling them their receipt and what they owe
