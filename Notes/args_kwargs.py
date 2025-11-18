@@ -15,7 +15,7 @@ def hello(*names, **last):
     print(last)
     for name in names:
         if name == "Vienna":
-            print(f"Helo {name} {last['alast']} {last['vlast']}")
+            print(f"Hello {name} {last['alast']} {last['vlast']}")
         else:
             print(f"Hello {name} {last['alast']}")
 
