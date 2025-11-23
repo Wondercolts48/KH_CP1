@@ -1,12 +1,13 @@
 # Kh 2nd factorial calculator
 
 # Defining factorial calculator/calc function(userinput)
-user_input =[]
-for x in range(user_input - 1):
-    print("You are doing great")
-
+def factorial(n)
+user_input = int(input("Enter a number: "))  #userinput
+result = 1
 #For x in range(user_input-1)
-#userinput
+for x in range( x, user_input - 1):
+    result = result * 1   # Added what happens when you get the result because my partner forgot
+return result
 
 #While True
 while True:
