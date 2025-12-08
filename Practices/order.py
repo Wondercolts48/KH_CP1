@@ -18,7 +18,7 @@ menu = {
         "Hot chocolate": 3.49,
         "Chocolate milkshake": 5.99,
         "Coffee": 3.99,
-        "Iced tea": 3.49
+        "Iced tea": 3.49 
 
 
     }
