@@ -17,70 +17,30 @@ available_weapons = []   	 # Shows which weapon they chose
 Crystals_collected = 0  	 # Counts how many crystals the user has
 Defeated_bosses = []   	 # Shows how many bosses they have defeated
 
-# Dictionaries
-#Has the weapon name
-#How much damage it does
-#And how much the special attack does too
-weapons = {
-    "rings": {
-    "Name":"Acorn rings",
-    "Damage": 10,
-    "Special_attack" : 20
-    },
-    "Bunny braclet":{
-        "Damage": 14,
-        "Special attack": 17,
-    },
-    "serpent fan":{
-        "Damage": 15,
-        "Special attack": 18,
-    },
-
-    "Flower Scythe":{
-        "Damage": 13,
-        "Special attack": 19
-    }
-}
-
-Bosses = {
-    "Buffalo":{
-        "Health": 100,
-        "Damage": 18
-
-    },
-    "lion":{
-        "HP": 100,
-        "Damage": 15
-    },
-    "Camel":{
-        "HP": 100,
-        "Damage": 20
-    },
-    "Owl":{
-        "HP": 110,
-        "Damage": 19
-    },
-    "Crane":{
-        "HP": 108,
-        "Damage": 15
-    },
-    "Alligator":{
-        "HP": 110,
-        "Damage": 17
-    },
-    "Moose":{
-        "HP"": 
-
-    },
-    "The Phoenix":{
-
-    }
-
-}
+#THE MAIN GAME
+#Start game:
+#Display the title screen and introduction
+#Sets all the users stats, makes all their lists empty and calls the Headquarters function
 
 
-for x in weapons.keys():
-    print(x)
-    for y in weapons[x].keys():
-        print(f"{y} {weapons[x][y]}")
-print("")
+
+
+# All 9 locations as function. All are functions
+def	headquarters():
+    print(input("Hello! Welcome to Beast Blasters: Crystals Cleanup! Would you like to play today? "))
+    if user == "Yes":
+        print("Great!")
+
+#Gives the user a piece of clothing so they can go to other places first
+#Can choose between going to the plains or swamp
+#Displays which villages they can go to - only to 8, the Nether is last
+#Shows how many crystals they have gotten
+    print("Right now you have 0 crystals")
+#Lets users choose which village they can go to
+#Stores the weapon they choose in the variable of weapon
+#Adds “headquarters to location_visited
+#Tells them that they have to go out and come back to leave the crystals to return peace to the world
+headquarters()
+
+
+
