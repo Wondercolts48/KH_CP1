@@ -2,16 +2,17 @@
 
 #Variables
 
-#Bosses = {
-	"Buffalo":[80 "HP", 15 "damage"],
-	"Alligator":[80 "HP", 15 "damage"],
-	"Lion": [100 "HP", 18 "damage"],
-	"Camel": [110 "HP", 20 "damage"],
-	"Owl":[110 "HP", 20 "damage"],
-	"Crane":[90 "HP", 17 "damage"],
-	"Moose":[95 "HP", 18 "damage"],
-	"Phoenix":[200 "HP", 30 "damage"]
+Bosses ={
+    "Buffalo":["80 HP", "15 damage"],
+"Alligator":["80 HP", "15 damage"],
+"Lion": ["100 HP", "18 damage"],
+"Camel": ["110 HP", "20 damage"],
+"Owl":["110 HP", "20 damage"],
+"Crane":["90 HP", "17 damage"],
+"Moose":["95 HP", "18 damage"],
+"Phoenix":["200 HP", "30 damage"]
 }
+
 
 #Having to actually make my player
 def create_player():
@@ -37,9 +38,9 @@ def display_stats(player):
     print(f"Weapon: {player['weapon']}")
 
 def pick_up(player, item_name):
-	if item_name not in player["inventory"]:
-		player["inventory"].append(item_name)
-        print(f"✓ You have picked up {item_name}!")
+    if item_name not in player["inventory"]:
+        player["inventory"].append(item_name)
+        print(f" You have picked up {item_name}!")
     else:
         print(f"You already have {item_name}.")
 
@@ -82,7 +83,7 @@ def combat(player,boss_name):
     boss_damage = BOSSES[boss_name][1]
     special_attack_count = 0
     
-    print(f"\n⚔️  BATTLE START: You vs {boss_name}! ⚔️\n")
+    print(f" BATTLE START: You vs {boss_name}!")
     
     while player["health"] > 0 and boss_health > 0:
         print(f"Your HP: {player['health']} | {boss_name}'s HP: {boss_health}")
@@ -91,7 +92,7 @@ def combat(player,boss_name):
         print("2. Defend/Block")
         print("3. Use Item")
         if special_attack_count < 2:
-            print("4. Special Attack (Remaining: {})".format(2 - special_attack_count))
+            print("4. Special Attack (Remaining: {})"(2 - special_attack_count))
         
         choice = input("Choose action: ").strip()
         
@@ -115,14 +116,14 @@ def combat(player,boss_name):
             damage = player["strength"] * 2
             boss_health -= damage
             special_attack_count += 1
-            print(f"\n SPECIAL ATTACK! You dealt {damage} damage to {boss_name}!")
+            print(f"SPECIAL ATTACK! You dealt {damage} damage to {boss_name}!")
             print(f"Special attacks remaining: {2 - special_attack_count}")
         else:
-            print("Invalid choice! You hesitate...")
+            print("Invalid choice! You hesitated...")
         
         # Check if boss is defeated
         if boss_health <= 0:
-            print(f"\n Victory! You have defeated {boss_name}! ")
+            print(f" Victory! You have defeated {boss_name}! ")
             player["defeated_bosses"].append(boss_name)
             break
         
@@ -142,15 +143,15 @@ def combat(player,boss_name):
         # Check if player is defeated
         if player["health"] <= 0:
             print("\n YOU HAVE DIED! ")
-            print("Respawning at Headquarters...\n")
+            print("Respawning at Headquarters...")
             player["health"] = 100
             break
         
-        input("\nPress Enter to continue...")
+        input("Press Enter to continue...")
     
     return False
 
-	def check_temperature(player, required_temp, location_name):
+def check_temperature(player, required_temp, location_name):
     if player["temperature_resistance"] < required_temp:
         print(f"\n WARNING: {location_name} requires {required_temp} temperature resistance!")
         print(f"You only have {player['temperature_resistance']}. You will take 10 damage from the environment.")
@@ -173,20 +174,21 @@ def headquarters(player):
     print("="*50)
     
     if player["weapon"] == "":
-        print("\nWelcome, brave warrior!")
+        print("Welcome, brave warrior!")
         print("The world is in chaos! 8 corrupted crystals have caused monsters to appear.")
-        print("You must collect all crystals and defeat the Phoenix in the Nether to restore peace!\n")
+        print("You must collect all crystals and defeat the Phoenix in the Nether to restore peace!")
         
         print("Choose your starting weapon:")
-        print("1. Sword - Balanced weapon")
-        print("2. Axe - High damage")
-        print("3. Spear - Quick attacks")
+        print("1. Acorn rings - 12 damage, the special attack does 25 damage")
+        print("2. Bunny braclet - 14 damage, special attack does 16 ")
+        print("3. Serpant fan - 15 damage, special attack does 23")
+        print("4. Flower scythe - 13 damage, special attack does 17 ")
         
-        weapon_choice = input("Choose (1-3): ").strip()
-        weapons = {"1": "Sword", "2": "Axe", "3": "Spear"}
+        weapon_choice = input("Choose (1-4): ").strip()
+        weapons = {"1": "Acorn rings", "2": "Bunny braclet", "3": "Serpant fan", "4": "Scythe"}
         player["weapon"] = weapons.get(weapon_choice, "Sword")
         
-        print(f"\n✓ You equipped the {player['weapon']}!")
+        print(f"You equipped the {player['weapon']}!")
         pick_up(player, "Basic Clothing")
         player["temperature_resistance"] = 10
     
@@ -210,7 +212,7 @@ def headquarters(player):
     print("9. Check Inventory")
     print("10. View Stats")
     
-    choice = input("\nChoose location: ").strip()
+    choice = input("Choose location: ").strip()
     
     if choice == "1":
         plains(player)
@@ -229,7 +231,7 @@ def headquarters(player):
     elif choice == "8" and player["crystals_collected"] >= 8:
         nether(player)
     elif choice == "9":
-        print("\nInventory:", player["inventory"] if player["inventory"] else "Empty")
+        print("Inventory:", player["inventory"] if player["inventory"] else "Empty")
         input("Press Enter to continue...")
         headquarters(player)
     elif choice == "10":
@@ -242,7 +244,7 @@ def headquarters(player):
 
 def plains(player):
     """Plains Village"""
-    print("\n PLAINS VILLAGE ")
+    print(" PLAINS VILLAGE ")
     
     if "Plains Village" not in player["location_visited"]:
         player["location_visited"].append("Plains Village")
@@ -261,10 +263,10 @@ def plains(player):
         player["temperature_resistance"] += 10
         player["strength"] += 5
         player["defense"] += 3
-        print(f"\n✓ Crystal collected! ({player['crystals_collected']}/8)")
-        print("✓ Stats increased!")
+        print(f" Crystal collected! ({player['crystals_collected']}/8)")
+        print("Stats increased!")
     
-    input("\nPress Enter to return to Headquarters...")
+    input("Press Enter to return to Headquarters...")
     headquarters(player)
 
 def swamp (player):
@@ -277,7 +279,7 @@ def swamp (player):
         headquarters(player)
         return
     
-    print("\nA fierce Alligator emerges from the swamp!")
+    print("A fierce Alligator emerges from the swamp!")
     if combat(player, "Alligator"):
         pick_up(player, "Crystal")
         pick_up(player, "Swamp Gear")
@@ -286,14 +288,14 @@ def swamp (player):
         player["temperature_resistance"] += 10
         player["strength"] += 5
         player["defense"] += 3
-        print(f"\n✓ Crystal collected! ({player['crystals_collected']}/8)")
-        print("✓ Stats increased!")
+        print(f"Crystal collected! ({player['crystals_collected']}/8)")
+        print("Stats increased!")
     
     input("\nPress Enter to return to Headquarters...")
     headquarters(player)
 
 def savanna(player):
- if "Lion" in player["defeated_bosses"]:
+    if "Lion" in player["defeated_bosses"]:
         print("You have already defeated the Lion here.")
         input("Press Enter to return...")
         headquarters(player)
@@ -306,19 +308,19 @@ def savanna(player):
         player["temperature_resistance"] += 6
         player["strength"] += 5
         player["defense"] += 3
-        print(f"\n✓ Crystal collected! ({player['crystals_collected']}/8)")
-        print("✓ Stats increased!")
-    
-    input("\nPress Enter to return to Headquarters...")
+        print(f"Crystal collected! ({player['crystals_collected']}/8)")
+        print(" Stats increased!")
+        
+        input("\nPress Enter to return to Headquarters...")
     headquarters(player)
 
 def desert(player):
     """Desert Village"""
-    print("\n DESERT VILLAGE ")
+    print("DESERT VILLAGE ")
     if not check_temperature(player, 30, "Desert Village"):
         headquarters(player)
         return
-    
+
     if "Desert Village" not in player["location_visited"]:
         player["location_visited"].append("Desert Village")
     
@@ -336,15 +338,13 @@ def desert(player):
         player["temperature_resistance"] += 4
         player["strength"] += 5
         player["defense"] += 3
-        print(f"\n Crystal collected! ({player['crystals_collected']}/8)")
+        print(f" Crystal collected! ({player['crystals_collected']}/8)")
         print("Stats increased!")
     
-    input("\nPress Enter to return to Headquarters...")
+    input("Press Enter to return to Headquarters...")
     headquarters(player)
 def snowy():
-	  print("\n🦉 SNOWY VILLAGE 🦉")
-    print("Freezing winds and deep snow surround you...")
-    
+    print(" SNOWY VILLAGE")
     if not check_temperature(player, 30, "Snowy Village"):
         headquarters(player)
         return
@@ -358,7 +358,7 @@ def snowy():
         headquarters(player)
         return
     
-    print("\nA mystical Ice Owl swoops down from the sky!")
+    print("A mystical Ice Owl swoops down from the sky!")
     if combat(player, "Owl"):
         pick_up(player, "Crystal")
         pick_up(player, "Winter Coat")
@@ -367,17 +367,16 @@ def snowy():
         player["temperature_resistance"] += 6
         player["strength"] += 5
         player["defense"] += 3
-        print(f"\n✓ Crystal collected! ({player['crystals_collected']}/8)")
-        print("✓ Stats increased!")
+        print(f" Crystal collected! ({player['crystals_collected']}/8)")
+        print(" Stats increased!")
     
-    input("\nPress Enter to return to Headquarters...")
+    input("Press Enter to return to Headquarters...")
     headquarters(player)
 
 def cherry_blossom(player):
     """Cherry Blossom Village"""
-    print("\n🌸 CHERRY BLOSSOM VILLAGE 🌸")
-    print("Pink petals dance in the gentle breeze...")
-    
+    print(" CHERRY BLOSSOM VILLAGE ")
+
     if not check_temperature(player, 15, "Cherry Blossom Village"):
         headquarters(player)
         return
@@ -391,7 +390,7 @@ def cherry_blossom(player):
         headquarters(player)
         return
     
-    print("\nAn elegant Crane warrior challenges you!")
+    print("An elegant Crane warrior challenges you!")
     if combat(player, "Crane"):
         pick_up(player, "Crystal")
         pick_up(player, "Silk Garments")
@@ -400,16 +399,15 @@ def cherry_blossom(player):
         player["temperature_resistance"] += 6
         player["strength"] += 5
         player["defense"] += 3
-        print(f"\n✓ Crystal collected! ({player['crystals_collected']}/8)")
-        print("✓ Stats increased!")
+        print(f" Crystal collected! ({player['crystals_collected']}/8)")
+        print("Stats increased!")
     
     input("\nPress Enter to return to Headquarters...")
     headquarters(player)
 
 def taiga(player):
     """Taiga Village"""
-    print("\n🦌 TAIGA VILLAGE 🦌")
-    print("Dense pine forests and cold air...")
+    print(" TAIGA VILLAGE ")
     
     if not check_temperature(player, 15, "Taiga Village"):
         headquarters(player)
@@ -424,7 +422,7 @@ def taiga(player):
         headquarters(player)
         return
     
-    print("\nA giant Moose crashes through the trees!")
+    print("A giant Moose crashes through the trees!")
     if combat(player, "Moose"):
         pick_up(player, "Crystal")
         pick_up(player, "Fur Clothing")
@@ -433,24 +431,23 @@ def taiga(player):
         player["temperature_resistance"] += 4
         player["strength"] += 5
         player["defense"] += 3
-        print(f"\n✓ Crystal collected! ({player['crystals_collected']}/8)")
-        print("✓ Stats increased!")
+        print(f"Crystal collected! ({player['crystals_collected']}/8)")
+        print("Stats increased!")
     
     input("\nPress Enter to return to Headquarters...")
     headquarters(player)
 
 def nether(player):
     """The Nether - Final Boss"""
-    print("\n🔥 THE NETHER 🔥")
-    print("A realm of fire and darkness...")
-    print("The Phoenix, source of all corruption, awaits!\n")
+    print(" THE NETHER ")
+    print("The Phoenix, source of all corruption, awaits!")
     
     if "Nether" not in player["location_visited"]:
         player["location_visited"].append("Nether")
     
     if combat(player, "Phoenix"):
-        print("\n" + "="*50)
-        print("🎊 CONGRATULATIONS! 🎊")
+        print("" + "="*50)
+        print(" CONGRATULATIONS! ")
         print("="*50)
         print("You have defeated the Phoenix and collected all 8 crystals!")
         print("Peace has been restored to the world!")
@@ -469,10 +466,9 @@ def nether(player):
 
 def start_game(player):
     """Start the game"""
-    print("\n" + "="*50)
+    print("" + "="*50)
     print("  BEAST BLASTERS: CRYSTALS CLEANUP")
-    print("="*50)
-    print("\nWelcome to Beast Blasters!")
+    print("Welcome to Beast Blasters!")
     
     choice = input("\nDo you want to start your adventure? (yes/no): ").lower()
     
