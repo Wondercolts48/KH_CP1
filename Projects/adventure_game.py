@@ -124,7 +124,7 @@ def combat(player,boss_name):
         if boss_health <= 0:
             print(f"\n Victory! You have defeated {boss_name}! ")
             player["defeated_bosses"].append(boss_name)
-            return True
+            break
         
         # Boss's turn
         print(f"\n{boss_name} attacks!")
@@ -144,7 +144,7 @@ def combat(player,boss_name):
             print("\n YOU HAVE DIED! ")
             print("Respawning at Headquarters...\n")
             player["health"] = 100
-            return False
+            break
         
         input("\nPress Enter to continue...")
     
@@ -299,7 +299,6 @@ def savanna(player):
         headquarters(player)
         return
     
-    print("\nThe mighty Lion, king of the savanna, roars at you!")
     if combat(player, "Lion"):
         pick_up(player, "Crystal")
         pick_up(player, "Light Clothing")
@@ -312,3 +311,177 @@ def savanna(player):
     
     input("\nPress Enter to return to Headquarters...")
     headquarters(player)
+
+def desert(player):
+    """Desert Village"""
+    print("\n DESERT VILLAGE ")
+    if not check_temperature(player, 30, "Desert Village"):
+        headquarters(player)
+        return
+    
+    if "Desert Village" not in player["location_visited"]:
+        player["location_visited"].append("Desert Village")
+    
+    if "Camel" in player["defeated_bosses"]:
+        print("You have already defeated the Camel here.")
+        input("Press Enter to return...")
+        headquarters(player)
+        return
+
+    if combat(player, "Camel"):
+        pick_up(player, "Crystal")
+        pick_up(player, "Desert Robes")
+        pick_up(player, "Health Potion")
+        player["crystals_collected"] += 1
+        player["temperature_resistance"] += 4
+        player["strength"] += 5
+        player["defense"] += 3
+        print(f"\n Crystal collected! ({player['crystals_collected']}/8)")
+        print("Stats increased!")
+    
+    input("\nPress Enter to return to Headquarters...")
+    headquarters(player)
+def snowy():
+	  print("\n🦉 SNOWY VILLAGE 🦉")
+    print("Freezing winds and deep snow surround you...")
+    
+    if not check_temperature(player, 30, "Snowy Village"):
+        headquarters(player)
+        return
+    
+    if "Snowy Village" not in player["location_visited"]:
+        player["location_visited"].append("Snowy Village")
+    
+    if "Owl" in player["defeated_bosses"]:
+        print("You have already defeated the Owl here.")
+        input("Press Enter to return...")
+        headquarters(player)
+        return
+    
+    print("\nA mystical Ice Owl swoops down from the sky!")
+    if combat(player, "Owl"):
+        pick_up(player, "Crystal")
+        pick_up(player, "Winter Coat")
+        pick_up(player, "Health Potion")
+        player["crystals_collected"] += 1
+        player["temperature_resistance"] += 6
+        player["strength"] += 5
+        player["defense"] += 3
+        print(f"\n✓ Crystal collected! ({player['crystals_collected']}/8)")
+        print("✓ Stats increased!")
+    
+    input("\nPress Enter to return to Headquarters...")
+    headquarters(player)
+
+def cherry_blossom(player):
+    """Cherry Blossom Village"""
+    print("\n🌸 CHERRY BLOSSOM VILLAGE 🌸")
+    print("Pink petals dance in the gentle breeze...")
+    
+    if not check_temperature(player, 15, "Cherry Blossom Village"):
+        headquarters(player)
+        return
+    
+    if "Cherry Blossom Village" not in player["location_visited"]:
+        player["location_visited"].append("Cherry Blossom Village")
+    
+    if "Crane" in player["defeated_bosses"]:
+        print("You have already defeated the Crane here.")
+        input("Press Enter to return...")
+        headquarters(player)
+        return
+    
+    print("\nAn elegant Crane warrior challenges you!")
+    if combat(player, "Crane"):
+        pick_up(player, "Crystal")
+        pick_up(player, "Silk Garments")
+        pick_up(player, "Bandage")
+        player["crystals_collected"] += 1
+        player["temperature_resistance"] += 6
+        player["strength"] += 5
+        player["defense"] += 3
+        print(f"\n✓ Crystal collected! ({player['crystals_collected']}/8)")
+        print("✓ Stats increased!")
+    
+    input("\nPress Enter to return to Headquarters...")
+    headquarters(player)
+
+def taiga(player):
+    """Taiga Village"""
+    print("\n🦌 TAIGA VILLAGE 🦌")
+    print("Dense pine forests and cold air...")
+    
+    if not check_temperature(player, 15, "Taiga Village"):
+        headquarters(player)
+        return
+    
+    if "Taiga Village" not in player["location_visited"]:
+        player["location_visited"].append("Taiga Village")
+    
+    if "Moose" in player["defeated_bosses"]:
+        print("You have already defeated the Moose here.")
+        input("Press Enter to return...")
+        headquarters(player)
+        return
+    
+    print("\nA giant Moose crashes through the trees!")
+    if combat(player, "Moose"):
+        pick_up(player, "Crystal")
+        pick_up(player, "Fur Clothing")
+        pick_up(player, "Bandage")
+        player["crystals_collected"] += 1
+        player["temperature_resistance"] += 4
+        player["strength"] += 5
+        player["defense"] += 3
+        print(f"\n✓ Crystal collected! ({player['crystals_collected']}/8)")
+        print("✓ Stats increased!")
+    
+    input("\nPress Enter to return to Headquarters...")
+    headquarters(player)
+
+def nether(player):
+    """The Nether - Final Boss"""
+    print("\n🔥 THE NETHER 🔥")
+    print("A realm of fire and darkness...")
+    print("The Phoenix, source of all corruption, awaits!\n")
+    
+    if "Nether" not in player["location_visited"]:
+        player["location_visited"].append("Nether")
+    
+    if combat(player, "Phoenix"):
+        print("\n" + "="*50)
+        print("🎊 CONGRATULATIONS! 🎊")
+        print("="*50)
+        print("You have defeated the Phoenix and collected all 8 crystals!")
+        print("Peace has been restored to the world!")
+        print("You are a true BEAST BLASTER!")
+        print("="*50 + "\n")
+        
+        play_again = input("Do you want to play again? (yes/no): ").lower()
+        if play_again == "yes":
+            new_player = create_player()
+            start_game(new_player)
+        else:
+            print("Thanks for playing!")
+            return
+    else:
+        headquarters(player)
+
+def start_game(player):
+    """Start the game"""
+    print("\n" + "="*50)
+    print("  BEAST BLASTERS: CRYSTALS CLEANUP")
+    print("="*50)
+    print("\nWelcome to Beast Blasters!")
+    
+    choice = input("\nDo you want to start your adventure? (yes/no): ").lower()
+    
+    if choice == "yes":
+        headquarters(player)
+    else:
+        print("Maybe another time! Goodbye!")
+
+# Start the game
+if __name__ == "__main__":
+    player = create_player()
+    start_game(player)
