@@ -1,355 +1,314 @@
 # Kh 2nd texted based adventure game
 
 #Variables
+
+#Bosses = {
+	"Buffalo":[80 "HP", 15 "damage"],
+	"Alligator":[80 "HP", 15 "damage"],
+	"Lion": [100 "HP", 18 "damage"],
+	"Camel": [110 "HP", 20 "damage"],
+	"Owl":[110 "HP", 20 "damage"],
+	"Crane":[90 "HP", 17 "damage"],
+	"Moose":[95 "HP", 18 "damage"],
+	"Phoenix":[200 "HP", 30 "damage"]
+}
+
+#Having to actually make my player
+def create_player():
+	player = {
+		"health": 100,
+		"strength":10,
+		"defense": 5,
+		"temperature_resistance": 0,
+		"inventory_visted": [],
+		"location_visited": [],
+		"weapon": "",
+		"crystals_collected": 0,
+		"defeated_bosses":[]
+	}
+	return player
 #Defining how my player stats are going to work
-def player_stats():
-    player_health = 100  		# How much HP the user has
-    player_strength = 10 #changes when the user choose a weapon. Does normal damage
-    Player_defense = 5    	 # Reduced impact from the monster  
-    Temperature_resistance = 0 	# Protects the user from environment damage
+def display_stats(player):
+    print(f"Health: {player['health']} HP")
+    print(f"Strength: {player['strength']}")
+    print(f"Defense: {player['defense']}")
+    print(f"Temperature Resistance: {player['temperature_resistance']}")
+    print(f"Crystals: {player['crystals_collected']}/8")
+    print(f"Weapon: {player['weapon']}")
 
-player_stats()
+def pick_up(player, item_name):
+	if item_name not in player["inventory"]:
+		player["inventory"].append(item_name)
+        print(f"✓ You have picked up {item_name}!")
+    else:
+        print(f"You already have {item_name}.")
 
-#Lists - where they can put their stuff and see where they have already gone
-inventory = []   	#Stores what they have picked up
-location_visted = []   	 # Tracks which villages the user has been to
-available_weapons = []   	 # Shows which weapon they chose
-crystals_collected = 0  	 # Counts how many crystals the user has
-Defeated_bosses = []   	 # Shows how many bosses they have defeated
-
-#THE MAIN GAME
-#Start game:
-#Display the title screen and introduction
-#Sets all the users stats, makes all their lists empty and calls the Headquarters function
-
-# All 9 locations as function. All are functions
-def	headquarters():
-    print(input("Hello! Welcome to Beast Blasters: Crystals Cleanup!"))
-    if user == "yes":
-        print(input("Great! Welcome new player. What is your name? "))
-#Gives the user a piece of clothing so they can go to other places first
-#Can choose between going to the plains or swamp
-#Displays which villages they can go to - only to 8, the Nether is last
-#Shows how many crystals they have gotten
-#Lets users choose which village they can go to
-#Stores the weapon they choose in the variable of weapon
-#Adds “headquarters to location_visited
-#Tells them that they have to go out and come back to leave the crystals to return peace to the world
-headquarters()
-
-	#Plains():
-def plains():
-    print("Sup")
-#Can go here first 
-#Checks the defeated_bosses list to see if the user already defeated it.
-#If the Buffalo is already defeated:
-#		Tells the user that they already beat them
-#		Asks them to go somewhere else
-#If the Buffalo hasn’t been defeated yet:
-#	Starts to fight the boss
-#	Calls the combat function
-#After they won:
-#	Drops a crystal and clothes, and adds both to the inventory list
-#	Increased crystals_collected by 1
-#	Increases temperature_resistance by 10
-#	Increases player_strength by 5
-#	Increases player_defense by 3
-#	Adds “Buffalo” to the defeated_bosses list
-#Adds “plains village” to the location_vistied list
-#Call that location’s function
-plains()
-	
-
-#	Savanna():
-def savanna():
-    print("You are great")
-#Can’t come in if the users temperature resistance isn’t 25 or higher
-#IF temperature_resistance is less than 25:
-#	Warns the user that they will take 10 damage from the heat
-#	Ask if they want to continue or to go back
-#IF the user wants to continue anyways:
-#	It subtracts 10 from the player_health
-#BUT if the user has more than 25 they can continue
-#Checks if the defeated_bosses list to see if the Lion is already defeated
-#IF the Lion is defeated:
-#	Tell the player and ask where they want to go next
-#IF the lion isn’t defeated:
-#	Start the combat function
-#After winning:
-	#Drops crystals and clothing, adds them to the inventory.
-#Increased crystals_collected by 1
-#	Increases temperature_resistance by 6
-# 	Increases player_strength by 5
-# 	Increases player_defense by 3
-# Asks the player where they want to go to next
-savanna()
-
-
-
-
-# 	Desert():
-def desert():
-    print("Sup")
-# Can only come in once the user has 30 or higher temperature resistance
-# IF temperature_resistance is less than 30:
-# 	Warns the user that they will take 10 damage from the heat
-# 	Ask if they want to continue or to go back
-# IF the user wants to continue:
-# 	It subtracts 10 from the player_health
-# BUT if the user has more than 30 they can continue on
-# Checks if the defeated_bosses list to see if the Camel is already defeated
-# IF the Camel is defeated:
-# 	Tell the player and ask where they want to go next
-# IF the camel isn’t defeated:
-# 	Starts the combat function
-# After winning:
-# 	Drops crystals and clothing, adds them to the inventory.
-# Increased crystals_collected by 1
-# 	Increases temperature_resistance by 4
-# Drops a potions- restores 20 health
-# 	Increases player_strength by 5
-# 	Increases player_defense by 3
-# Adds “Camel” to the defeated_bosses list
-# Adds “Desert village” to the location_vistied list
-# Asks the player where they want to go to next
-desert()
-
-
-
-# 	Snowy():
-def snowy():
-    print("Sup")
-# Can only come in once the user has 30 or higher temperature resistance
-# IF temperature_resistance is less than 30:
-# 	Warns the user that they will take 10 damage from the heat
-# 	Ask if they want to continue or to go back
-# IF the user wants to continue:
-# 	It subtracts 10 from the player_health
-# Checks if the defeated_bosses list to see if the Camel is already defeated
-# IF the Owl is defeated:
-# 	Tell the player and ask where they want to go next
-# IF the camel isn’t defeated:
-# 	Starts the combat function
-# After winning:
-# 	Drops crystals and clothing, adds them to the inventory.
-# Increased crystals_collected by 1
-# 	Increases temperature_resistance by 6
-# 	Increases player_strength by 5
-# 	Increases player_defense by 3
-# Adds “Owl” to the defeated_bosses list
-# Adds “snowy village” to the location_vistied list
-# Asks the player where they want to go to next
-# Drops a potions -restores 20 health
-snowy()
-
-# 	Cherry blossom():
-def cherry_blossom():
-    print("Sup")
-# Can only come in once the user has 15 or higher temperature resistance
-# IF temperature_resistance is less than 15:
-# 	Warns the user that they will take 10 damage from the heat
-# 	Ask if they want to continue or to go back
-# IF the user wants to continue:
-# 	It subtracts 10 from the player_health
-# Checks if the defeated_bosses list to see if the Crane is already defeated
-# IF the Crane is defeated:
-# 	Tell the player and ask where they want to go next
-# IF the crane isn’t defeated:
-# 	Starts the  combat function
-# After winning:
-# 	Drops crystals and clothing, adds them to the inventory.
-# Increased crystals_collected by 1
-# 	Increases temperature_resistance by 6
-# Drops a bandage - restores 8 health
-# 	Increases player_strength by 5
-# 	Increases player_defense by 3
-# Adds “Crane” to the defeated_bosses list
-# Adds “Cherry Blossom village” to the location_vistied list
-# Asks the player where they want to go to next
-cherry_blossom()
-
-
-# 	Swamp():
-def swamp():
-    print("Sup")
-# Can go here first too
-# Checks the defeated_bosses list to see if the user already defeated it.
-# If the Alligator is already defeated:
-# 		Tells the user that they already beat them
-# 		Asks them to go somewhere else
-# If the Alligator hasn’t been defeated yet:
-# 	Starts to fight the boss
-# 	Calls the combat function
-# After they won:
-# 	Drops a crystal and clothes, and adds both to the inventory list
-# 	Increased crystals_collected by 1
-# 	Increases temperature_resistance by 10
-# 	Drops a bandage - restores 8 health
-# 	Increases player_strength by 5
-# 	Increases player_defense by 3
-# 	Adds “Alligator” to the defeated_bosses list
-# Adds “swamp village” to the location_vistied list
-# Call that location’s function
-swamp()
-	
-# 	Taiga():
-def taiga():
-    print("Sup")
-# 15 tmp_res
-# IF temperature_resistance is less than 15:
-# 	Warns the user that they will take 10 damage from the heat
-# 	Ask if they want to continue or to go back
-# IF the user wants to continue:
-# 	It subtracts 10 from the player_health
-# Checks if the defeated_bosses list to see if the Camel is already defeated
-# IF the Camel is defeated:
-# 	Tell the player and ask where they want to go next
-# IF the camel isn’t defeated:
-# 	Starts the  combat function
-# After winning:
-# 	Drops crystals and clothing, adds them to the inventory.
-# Increased crystals_collected by 1
-# 	Increases temperature_resistance by 4
-# Drops a bandage - restores 8 health
-# 	Increases player_strength by 5
-# 	Increases player_defense by 3
-# Adds “Moose” to the defeated_bosses list
-# Adds “taiga village” to the location_vistied list
-# Asks the player where they want to go to next
-taiga()
-
-
-# 	The nether():
-def nether():
-    print("Sup")
-
-# 	Starts the  combat function
-# After winning:
-# 	Drops crystals and clothing, adds them to the inventory.
-# Increased crystals_collected by 1
-nether()
-
-
-# #Combat function():
-def combat():
-    print(player_stats)
-# Takes in the boss’s name, health, and their damage
-# Display’s player health and boss health
-# Set special_attack_count to 0
-
-# Start of LOOP: Keeps repeating while the user health and the bosses health are greater than 0
-
-# # Users turn
-# Display “What do you want to do?”
-# Show user their action options:
-# attack
-# 2.Defen/block
-# 3.Use Item
-# 4.Special Attack (Only is their special_attack_count is less than 2)
-
-# User chooses an action
-
-# IF player choose Attack:
-# Calculate damage = weapon damage +player_strength
-# Subtract the damage from the bosses health
-# Display “You have dealt [damage] damage!”
-# Display the bosses remaining health
-
-# IF player chooses Defend/Block:
-#             Display "You brace yourself and raise your weapon to block!"
-#             Users takes half damage this turn (or reduced damage)
+def use_item(player):
+    if not player["inventory"]:
+        print("Your inventory is empty!")
+        return False
+    
+    print("\nYour inventory:")
+    for i, item in enumerate(player["inventory"], 1):
+        print(f"{i}. {item}")
+    print(f"{len(player['inventory']) + 1}. Cancel")
+    
+    try:
+        choice = int(input("Choose an item to use: "))
+        if choice == len(player["inventory"]) + 1:
+            return False
         
-#         IF the user chooses Use Item:
-#             Display items in inventory
-#             User selects health potion or bandage
-
-#             IF the user chooses the health potion:
-#                 Add 20 to Users_health
-#                 Remove potion from inventory
-#                 Display "You used a health potion! Restored 20 HP"
-
-#             IF the user chooses the bandage:
-#                 Add 8 to Users_health
-#                 Remove bandage from inventory
-#                 Display "You used a bandage! Restored 8 HP"
+        item = player["inventory"][choice - 1]
         
-#         IF User chooses Special Attack AND their special_attack_count is less than 2:
-#             Check which weapon player has
-#             Use that weapon's special ability (higher damage)
-#             Increase special_attack_count by 1
-#             Display "Special attacks remaining: [2 minus special_attack_count]"
+        if "Health Potion" in item:
+            player["health"] += 20
+            player["inventory"].remove(item)
+            print(f"✓ You used a Health Potion! Restored 20 HP. Current HP: {player['health']}")
+            return True
+        elif "Bandage" in item:
+            player["health"] += 8
+            player["inventory"].remove(item)
+            print(f"✓ You used a Bandage! Restored 8 HP. Current HP: {player['health']}")
+            return True
+        else:
+            print("This item cannot be used in combat.")
+            return False
+    except (ValueError, IndexError):
+        print("Invalid choice!")
+        return False
 
-# # Checks if the boss is defeated
-# IF boss health if it’s 0 or less:
-# Display “You have defeated [boss name]”
-# BREAK out of the combat loop
-# RETURN to village function
+def combat(player,boss_name):
+    boss_health = BOSSES[boss_name][0]
+    boss_damage = BOSSES[boss_name][1]
+    special_attack_count = 0
+    
+    print(f"\n⚔️  BATTLE START: You vs {boss_name}! ⚔️\n")
+    
+    while player["health"] > 0 and boss_health > 0:
+        print(f"Your HP: {player['health']} | {boss_name}'s HP: {boss_health}")
+        print("\nWhat do you want to do?")
+        print("1. Attack")
+        print("2. Defend/Block")
+        print("3. Use Item")
+        if special_attack_count < 2:
+            print("4. Special Attack (Remaining: {})".format(2 - special_attack_count))
+        
+        choice = input("Choose action: ").strip()
+        
+        defend_mode = False
+        
+        # Player's turn
+        if choice == "1":  # Attack
+            damage = player["strength"]
+            boss_health -= damage
+            print(f"\n You dealt {damage} damage to {boss_name}!")
+            
+        elif choice == "2":  # Defend
+            print("\n You brace yourself and raise your weapon to block!")
+            defend_mode = True
+            
+        elif choice == "3":  # Use Item
+            if use_item(player):
+                continue  # Skip boss turn if item used successfully
+            
+        elif choice == "4" and special_attack_count < 2:  # Special Attack
+            damage = player["strength"] * 2
+            boss_health -= damage
+            special_attack_count += 1
+            print(f"\n SPECIAL ATTACK! You dealt {damage} damage to {boss_name}!")
+            print(f"Special attacks remaining: {2 - special_attack_count}")
+        else:
+            print("Invalid choice! You hesitate...")
+        
+        # Check if boss is defeated
+        if boss_health <= 0:
+            print(f"\n Victory! You have defeated {boss_name}! ")
+            player["defeated_bosses"].append(boss_name)
+            return True
+        
+        # Boss's turn
+        print(f"\n{boss_name} attacks!")
+        damage = boss_damage - player["defense"]
+        if defend_mode:
+            damage = damage // 2
+            print("You blocked! Damage reduced!")
+        
+        if damage < 0:
+            damage = 0
+        
+        player["health"] -= damage
+        print(f" You took {damage} damage! Your HP: {player['health']}")
+        
+        # Check if player is defeated
+        if player["health"] <= 0:
+            print("\n YOU HAVE DIED! ")
+            print("Respawning at Headquarters...\n")
+            player["health"] = 100
+            return False
+        
+        input("\nPress Enter to continue...")
+    
+    return False
 
-# # The bosses turn to attack
-# Display “[boss name] attacks!”
-# Calculate damage = boss damage - user_defense
-# IF user choose defend:
-# 	Reduced damage by half
-# Subtract damage from user_health
-# display”You have token [damage] damage!”
-# Display the user’s remaining health
+	def check_temperature(player, required_temp, location_name):
+    if player["temperature_resistance"] < required_temp:
+        print(f"\n WARNING: {location_name} requires {required_temp} temperature resistance!")
+        print(f"You only have {player['temperature_resistance']}. You will take 10 damage from the environment.")
+        choice = input("Do you want to continue anyway? (yes/no): ").lower()
+        
+        if choice == "yes":
+            player["health"] -= 10
+            print(f" You took 10 environmental damage! HP: {player['health']}")
+            if player["health"] <= 0:
+                print("\n You died from the harsh environment!")
+                player["health"] = 100
+                return False
+            return True
+        else:
+            return False
+    return True
 
-# # LOSING CONDITIONS
-#  IF user health is < 0:
-# Display “YOU HAVE DIED
-# Player respawns at Headquarters with full health and can try again
-# Sets the users health to to full health
-# Breaks out of the combat loop
+def headquarters(player):
+    print(" HEADQUARTERS ")
+    print("="*50)
+    
+    if player["weapon"] == "":
+        print("\nWelcome, brave warrior!")
+        print("The world is in chaos! 8 corrupted crystals have caused monsters to appear.")
+        print("You must collect all crystals and defeat the Phoenix in the Nether to restore peace!\n")
+        
+        print("Choose your starting weapon:")
+        print("1. Sword - Balanced weapon")
+        print("2. Axe - High damage")
+        print("3. Spear - Quick attacks")
+        
+        weapon_choice = input("Choose (1-3): ").strip()
+        weapons = {"1": "Sword", "2": "Axe", "3": "Spear"}
+        player["weapon"] = weapons.get(weapon_choice, "Sword")
+        
+        print(f"\n✓ You equipped the {player['weapon']}!")
+        pick_up(player, "Basic Clothing")
+        player["temperature_resistance"] = 10
+    
+    if "Headquarters" not in player["location_visited"]:
+        player["location_visited"].append("Headquarters")
+    
+    display_stats(player)
+    
+    print("Where do you want to go?")
+    print("1. Plains Village")
+    print("2. Swamp Village")
+    if player["crystals_collected"] >= 1:
+        print("3. Savanna Village")
+        print("4. Cherry Blossom Village")
+        print("5. Taiga Village")
+    if player["crystals_collected"] >= 3:
+        print("6. Desert Village")
+        print("7. Snowy Village")
+    if player["crystals_collected"] >= 8:
+        print("8. The Nether (FINAL BOSS)")
+    print("9. Check Inventory")
+    print("10. View Stats")
+    
+    choice = input("\nChoose location: ").strip()
+    
+    if choice == "1":
+        plains(player)
+    elif choice == "2":
+        swamp(player)
+    elif choice == "3" and player["crystals_collected"] >= 1:
+        savanna(player)
+    elif choice == "4" and player["crystals_collected"] >= 1:
+        cherry_blossom(player)
+    elif choice == "5" and player["crystals_collected"] >= 1:
+        taiga(player)
+    elif choice == "6" and player["crystals_collected"] >= 3:
+        desert(player)
+    elif choice == "7" and player["crystals_collected"] >= 3:
+        snowy(player)
+    elif choice == "8" and player["crystals_collected"] >= 8:
+        nether(player)
+    elif choice == "9":
+        print("\nInventory:", player["inventory"] if player["inventory"] else "Empty")
+        input("Press Enter to continue...")
+        headquarters(player)
+    elif choice == "10":
+        display_stats(player)
+        input("Press Enter to continue...")
+        headquarters(player)
+    else:
+        print("Invalid choice or location locked!")
+        headquarters(player)
 
-# After combat ends:
-# 	It resets the special_attack_count to 0 for the next battle.
+def plains(player):
+    """Plains Village"""
+    print("\n PLAINS VILLAGE ")
+    
+    if "Plains Village" not in player["location_visited"]:
+        player["location_visited"].append("Plains Village")
+    
+    if "Buffalo" in player["defeated_bosses"]:
+        print("You have already defeated the Buffalo here.")
+        input("Press Enter to return...")
+        headquarters(player)
+        return
+    
+    print("\nA massive Buffalo blocks your path!")
+    if combat(player, "Buffalo"):
+        pick_up(player, "Crystal")
+        pick_up(player, "Warm Clothing")
+        player["crystals_collected"] += 1
+        player["temperature_resistance"] += 10
+        player["strength"] += 5
+        player["defense"] += 3
+        print(f"\n✓ Crystal collected! ({player['crystals_collected']}/8)")
+        print("✓ Stats increased!")
+    
+    input("\nPress Enter to return to Headquarters...")
+    headquarters(player)
 
-# #PICK UP FUNCTION
-# item_up(item_name):
-# Check if item is already in their inventory list
-# IF it’s not in their inventory yet
-# 	Add the item to their inventory list
-# Display “You have picked up [item_name]”
-# IF it’s already in their inventory
-# 	Display “You already have this item.”
+def swamp (player):
+    if "Swamp Village" not in player["location_visited"]:
+        player["location_visited"].append("Swamp Village")
+    
+    if "Alligator" in player["defeated_bosses"]:
+        print("You have already defeated the Alligator here.")
+        input("Press Enter to return...")
+        headquarters(player)
+        return
+    
+    print("\nA fierce Alligator emerges from the swamp!")
+    if combat(player, "Alligator"):
+        pick_up(player, "Crystal")
+        pick_up(player, "Swamp Gear")
+        pick_up(player, "Bandage")
+        player["crystals_collected"] += 1
+        player["temperature_resistance"] += 10
+        player["strength"] += 5
+        player["defense"] += 3
+        print(f"\n✓ Crystal collected! ({player['crystals_collected']}/8)")
+        print("✓ Stats increased!")
+    
+    input("\nPress Enter to return to Headquarters...")
+    headquarters(player)
 
-
-# #Item function():
-def item():
-    print("Sup")
-# Displays all items in their inventory list
-# The users chooses wich item they want to choose
-# IF they choose the health potion:
-# 	Adds 20 health to the user_Health
-# 	Removes the potion from their inventory
-# Displays “Restored 20 HP”
-# If they choose a bandage:
-# 	Adds only 8 health
-# 	Removes the bandage
-# 	Displays “Restored 8 HP”
-item()
-
-# #THE MAIN GAME
-# Start game:
-# Display the title screen and introduction
-# Sets all the users stats, makes all their lists empty and calls the Headquarters function
-
-# The Loop:
-# While user_health is greater than 0:
-# User choose a location and is at the location
-# Calls the locations function and calls the combat function
-# The user can either go to another location or back to headquarters
-
-# Checks if the crystals_collected = 8:
-# IF it’s a yes, then it unlocks the Nether
-# Display “You can now enter the Nether! Good luck defeating this boss!”
-
-# Continue loop until the user beat the Phoenix or quits
-
-# # WINNING CONDITIONS
-# Once the user defeats all the bosses
-# The user has all 8 crystals
-# The user also to defeat the Phoenix in the Nether to win
-# Display victory message
-# Game end
-# Ask if the user wants to play again
+def savanna(player):
+ if "Lion" in player["defeated_bosses"]:
+        print("You have already defeated the Lion here.")
+        input("Press Enter to return...")
+        headquarters(player)
+        return
+    
+    print("\nThe mighty Lion, king of the savanna, roars at you!")
+    if combat(player, "Lion"):
+        pick_up(player, "Crystal")
+        pick_up(player, "Light Clothing")
+        player["crystals_collected"] += 1
+        player["temperature_resistance"] += 6
+        player["strength"] += 5
+        player["defense"] += 3
+        print(f"\n✓ Crystal collected! ({player['crystals_collected']}/8)")
+        print("✓ Stats increased!")
+    
+    input("\nPress Enter to return to Headquarters...")
+    headquarters(player)
