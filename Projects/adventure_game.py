@@ -3,14 +3,14 @@
 #Variables
 
 Bosses ={
-    "Buffalo":["80 HP", "15 damage"],
-"Alligator":["80 HP", "15 damage"],
-"Lion": ["100 HP", "18 damage"],
-"Camel": ["110 HP", "20 damage"],
-"Owl":["110 HP", "20 damage"],
-"Crane":["90 HP", "17 damage"],
-"Moose":["95 HP", "18 damage"],
-"Phoenix":["200 HP", "30 damage"]
+    "Buffalo":[80,15],
+"Alligator":[80,15 ],
+"Lion": [100, 18],
+"Camel": [110, 20],
+"Owl":[110, 20],
+"Crane":[90, 17 ],
+"Moose":[95,18],
+"Phoenix":[200, 30]
 }
 
 
@@ -21,7 +21,7 @@ def create_player():
 		"strength":10,
 		"defense": 5,
 		"temperature_resistance": 0,
-		"inventory_visted": [],
+		"inventory": [],
 		"location_visited": [],
 		"weapon": "",
 		"crystals_collected": 0,
@@ -78,9 +78,9 @@ def use_item(player):
         print("Invalid choice!")
         return False
 
-def combat(player,boss_name):
-    boss_health = BOSSES[boss_name][0]
-    boss_damage = BOSSES[boss_name][1]
+def combat(player, boss_name):
+    boss_health = Bosses[boss_name][0]
+    boss_damage = Bosses[boss_name][1]
     special_attack_count = 0
     
     print(f" BATTLE START: You vs {boss_name}!")
@@ -92,7 +92,7 @@ def combat(player,boss_name):
         print("2. Defend/Block")
         print("3. Use Item")
         if special_attack_count < 2:
-            print("4. Special Attack (Remaining: {})"(2 - special_attack_count))
+            print(f"4. Special Attack (Remaining: {2 - special_attack_count})")
         
         choice = input("Choose action: ").strip()
         
@@ -117,7 +117,7 @@ def combat(player,boss_name):
             boss_health -= damage
             special_attack_count += 1
             print(f"SPECIAL ATTACK! You dealt {damage} damage to {boss_name}!")
-            print(f"Special attacks remaining: {2 - special_attack_count}")
+            print(f"Special Attack (Remaining: {2 - special_attack_count})")
         else:
             print("Invalid choice! You hesitated...")
         
@@ -343,7 +343,7 @@ def desert(player):
     
     input("Press Enter to return to Headquarters...")
     headquarters(player)
-def snowy():
+def snowy(player):
     print(" SNOWY VILLAGE")
     if not check_temperature(player, 30, "Snowy Village"):
         headquarters(player)
