@@ -125,7 +125,8 @@ def combat(player, boss_name):
         if boss_health <= 0:
             print(f" Victory! You have defeated {boss_name}! ")
             player["defeated_bosses"].append(boss_name)
-            break
+            player['health'] = 100
+            return False
         
         # Boss's turn
         print(f"\n{boss_name} attacks!")
@@ -161,7 +162,7 @@ def check_temperature(player, required_temp, location_name):
             player["health"] -= 10
             print(f" You took 10 environmental damage! HP: {player['health']}")
             if player["health"] <= 0:
-                print("\n You died from the harsh environment!")
+                print(" You died from the harsh environment!")
                 player["health"] = 100
                 return False
             return True
