@@ -13,6 +13,61 @@ Bosses ={
 "Phoenix":[200, 30]
 }
 
+BOSS_REWARDS = {
+    "Buffalo": {
+        "temp": 10,
+        "crystals": 1,
+        "items": ["Warm Clothing"]
+    },
+    "Alligator": {
+        "temp": 10,
+        "crystals": 1,
+        "items": ["Swamp Gear", "Bandage"]
+    },
+    "Lion": {
+        "temp": 6,
+        "crystals": 1,
+        "items": ["Light Clothing"]
+    },
+    "Crane": {
+        "temp": 6,
+        "crystals": 1,
+        "items": ["Silk Garments", "Bandage"]
+    },
+    "Moose": {
+        "temp": 4,
+        "crystals": 1,
+        "items": ["Fur Clothing", "Bandage"]
+    },
+    "Camel": {
+        "temp": 4,
+        "crystals": 1,
+        "items": ["Desert Robes", "Health Potion"]
+    },
+    "Owl": {
+        "temp": 6,
+        "crystals": 1,
+        "items": ["Winter Coat", "Health Potion"]
+    },
+    "Phoenix": {
+        "temp": 0,
+        "crystals": 0,
+        "items": []
+    }
+}
+
+
+def boss_rewards(player,boss_name):
+        rewards = BOSS_REWARDS[boss_name]
+        player["temperature_resistance"] += rewards["temp"]
+        player["crystals_collected"] += rewards["crystals"]
+        for item in rewards["items"]:
+                pick_up(player, item)
+        print("Rewards recieved!")
+        print(f"+{rewards['temp']} Temperature Resistance")
+        print(f"+{rewards['crystals']} Crystal")
+        if rewards["items"]:
+                print("Items:", ", ".join(rewards["items"]))
 
 #Having to actually make my player
 def create_player():
@@ -125,8 +180,9 @@ def combat(player, boss_name):
         if boss_health <= 0:
             print(f" Victory! You have defeated {boss_name}! ")
             player["defeated_bosses"].append(boss_name)
+            boss_rewards(player, boss_name)
             player['health'] = 100
-            return False
+            return True
         
         # Boss's turn
         print(f"\n{boss_name} attacks!")
@@ -258,10 +314,6 @@ def plains(player):
     
     print("\nA massive Buffalo blocks your path!")
     if combat(player, "Buffalo"):
-        pick_up(player, "Crystal")
-        pick_up(player, "Warm Clothing")
-        player["crystals_collected"] += 1
-        player["temperature_resistance"] += 10
         player["strength"] += 5
         player["defense"] += 3
         print(f" Crystal collected! ({player['crystals_collected']}/8)")
@@ -282,11 +334,7 @@ def swamp (player):
     
     print("A fierce Alligator emerges from the swamp!")
     if combat(player, "Alligator"):
-        pick_up(player, "Crystal")
         pick_up(player, "Swamp Gear")
-        pick_up(player, "Bandage")
-        player["crystals_collected"] += 1
-        player["temperature_resistance"] += 10
         player["strength"] += 5
         player["defense"] += 3
         print(f"Crystal collected! ({player['crystals_collected']}/8)")
@@ -303,10 +351,7 @@ def savanna(player):
         return
     
     if combat(player, "Lion"):
-        pick_up(player, "Crystal")
         pick_up(player, "Light Clothing")
-        player["crystals_collected"] += 1
-        player["temperature_resistance"] += 6
         player["strength"] += 5
         player["defense"] += 3
         print(f"Crystal collected! ({player['crystals_collected']}/8)")
@@ -332,15 +377,9 @@ def desert(player):
         return
 
     if combat(player, "Camel"):
-        pick_up(player, "Crystal")
         pick_up(player, "Desert Robes")
-        pick_up(player, "Health Potion")
-        player["crystals_collected"] += 1
-        player["temperature_resistance"] += 4
         player["strength"] += 5
         player["defense"] += 3
-        print(f" Crystal collected! ({player['crystals_collected']}/8)")
-        print("Stats increased!")
     
     input("Press Enter to return to Headquarters...")
     headquarters(player)
@@ -363,9 +402,6 @@ def snowy(player):
     if combat(player, "Owl"):
         pick_up(player, "Crystal")
         pick_up(player, "Winter Coat")
-        pick_up(player, "Health Potion")
-        player["crystals_collected"] += 1
-        player["temperature_resistance"] += 6
         player["strength"] += 5
         player["defense"] += 3
         print(f" Crystal collected! ({player['crystals_collected']}/8)")
@@ -393,11 +429,7 @@ def cherry_blossom(player):
     
     print("An elegant Crane warrior challenges you!")
     if combat(player, "Crane"):
-        pick_up(player, "Crystal")
         pick_up(player, "Silk Garments")
-        pick_up(player, "Bandage")
-        player["crystals_collected"] += 1
-        player["temperature_resistance"] += 6
         player["strength"] += 5
         player["defense"] += 3
         print(f" Crystal collected! ({player['crystals_collected']}/8)")
@@ -425,11 +457,9 @@ def taiga(player):
     
     print("A giant Moose crashes through the trees!")
     if combat(player, "Moose"):
-        pick_up(player, "Crystal")
+
         pick_up(player, "Fur Clothing")
-        pick_up(player, "Bandage")
-        player["crystals_collected"] += 1
-        player["temperature_resistance"] += 4
+
         player["strength"] += 5
         player["defense"] += 3
         print(f"Crystal collected! ({player['crystals_collected']}/8)")
