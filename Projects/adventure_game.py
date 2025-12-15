@@ -3,14 +3,14 @@
 #Variables
 
 Bosses ={
-    "Buffalo":[80,15],
-"Alligator":[80,15 ],
-"Lion": [100, 18],
-"Camel": [110, 20],
-"Owl":[110, 20],
-"Crane":[90, 17 ],
-"Moose":[95,18],
-"Phoenix":[200, 30]
+    "Buffalo":[80,17],
+"Alligator":[80,18 ],
+"Lion": [100, 23],
+"Camel": [110, 25],
+"Owl":[120, 24],
+"Crane":[102, 21 ],
+"Moose":[115,26],
+"Phoenix":[200, 46]
 }
 
 BOSS_REWARDS = {
@@ -72,8 +72,8 @@ def boss_rewards(player,boss_name):
 #Having to actually make my player
 def create_player():
 	player = {
-		"health": 100,
-		"strength":10,
+		"health": 80,
+		"strength":9,
 		"defense": 5,
 		"temperature_resistance": 0,
 		"inventory": [],
@@ -314,7 +314,7 @@ def plains(player):
     
     print("\nA massive Buffalo blocks your path!")
     if combat(player, "Buffalo"):
-        player["strength"] += 5
+        player["strength"] += 2
         player["defense"] += 3
         print(f" Crystal collected! ({player['crystals_collected']}/8)")
         print("Stats increased!")
@@ -335,7 +335,7 @@ def swamp (player):
     print("A fierce Alligator emerges from the swamp!")
     if combat(player, "Alligator"):
         pick_up(player, "Swamp Gear")
-        player["strength"] += 5
+        player["strength"] += 2
         player["defense"] += 3
         print(f"Crystal collected! ({player['crystals_collected']}/8)")
         print("Stats increased!")
@@ -352,7 +352,7 @@ def savanna(player):
     
     if combat(player, "Lion"):
         pick_up(player, "Light Clothing")
-        player["strength"] += 5
+        player["strength"] += 2
         player["defense"] += 3
         print(f"Crystal collected! ({player['crystals_collected']}/8)")
         print(" Stats increased!")
@@ -378,11 +378,12 @@ def desert(player):
 
     if combat(player, "Camel"):
         pick_up(player, "Desert Robes")
-        player["strength"] += 5
+        player["strength"] += 2
         player["defense"] += 3
     
     input("Press Enter to return to Headquarters...")
     headquarters(player)
+
 def snowy(player):
     print(" SNOWY VILLAGE")
     if not check_temperature(player, 30, "Snowy Village"):
@@ -402,7 +403,7 @@ def snowy(player):
     if combat(player, "Owl"):
         pick_up(player, "Crystal")
         pick_up(player, "Winter Coat")
-        player["strength"] += 5
+        player["strength"] += 2
         player["defense"] += 3
         print(f" Crystal collected! ({player['crystals_collected']}/8)")
         print(" Stats increased!")
@@ -430,7 +431,7 @@ def cherry_blossom(player):
     print("An elegant Crane warrior challenges you!")
     if combat(player, "Crane"):
         pick_up(player, "Silk Garments")
-        player["strength"] += 5
+        player["strength"] += 3
         player["defense"] += 3
         print(f" Crystal collected! ({player['crystals_collected']}/8)")
         print("Stats increased!")
@@ -460,7 +461,7 @@ def taiga(player):
 
         pick_up(player, "Fur Clothing")
 
-        player["strength"] += 5
+        player["strength"] += 2
         player["defense"] += 3
         print(f"Crystal collected! ({player['crystals_collected']}/8)")
         print("Stats increased!")
