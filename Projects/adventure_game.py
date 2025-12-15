@@ -509,7 +509,7 @@ def start_game(player):
     else:
         print("Maybe another time! Goodbye!")
 
-# Start the game
+# Starting the game
 if __name__ == "__main__":
     player = create_player()
     start_game(player)
